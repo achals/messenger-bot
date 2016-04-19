@@ -17,7 +17,6 @@ app_options=(
   -http_port=$PORT
   -use_glog=true
   -use_glog_formatter=true
-  -guice_stage=PRODUCTION
 )
 
 java "${jvm_options[@]}" "$main" "${app_options[@]}"
