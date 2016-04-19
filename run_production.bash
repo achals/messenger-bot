@@ -19,5 +19,4 @@ app_options=(
   -use_glog_formatter=true
 )
 
-find .
 java "${jvm_options[@]}" "$main" "${app_options[@]}"
