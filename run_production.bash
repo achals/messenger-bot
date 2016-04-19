@@ -14,7 +14,7 @@ jvm_options=(
 
 app_options=(
   -app_class=com.achals.messenger.bot.MessengerBotMain
-  -http_port=8080
+  -http_port=$PORT
   -use_glog=true
   -use_glog_formatter=true
   -guice_stage=PRODUCTION
