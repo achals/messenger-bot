@@ -9,7 +9,7 @@ jvm_options=(
   -XX:+UseConcMarkSweepGC
   -XX:+UseParNewGC
   -XX:ParallelGCThreads=2
-  -cp $jar
+  -cp target/classes:target/dependency/*
 )
 
 app_options=(
@@ -19,4 +19,5 @@ app_options=(
   -use_glog_formatter=true
 )
 
+find .
 java "${jvm_options[@]}" "$main" "${app_options[@]}"
