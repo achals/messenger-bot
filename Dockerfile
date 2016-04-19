@@ -10,4 +10,4 @@ RUN apt-get update && apt-get install -y oracle-java8-installer maven
 
 ADD . /usr/local/messenger-bot
 RUN cd /usr/local/messenger-bot && mvn install
-CMD ["run_production.bash"]
+CMD ["/usr/local/messenger-bot/target/run_production.bash"]
