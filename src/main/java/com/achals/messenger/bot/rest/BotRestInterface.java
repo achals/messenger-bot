@@ -6,19 +6,12 @@ package com.achals.messenger.bot.rest;
 
 import com.achals.messenger.bot.model.MessagePost;
 import com.google.common.base.Splitter;
-import com.google.common.io.CharStreams;
-import org.aopalliance.intercept.Invocation;
-import org.apache.commons.lang.StringUtils;
-import org.codehaus.jackson.map.ObjectMapper;
-
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
 import java.util.Map;
 
 @Path("/pin-bot/v1")
