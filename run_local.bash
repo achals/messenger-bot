@@ -9,7 +9,7 @@ jvm_options=(
   -XX:+UseConcMarkSweepGC
   -XX:+UseParNewGC
   -XX:ParallelGCThreads=2
-  -cp $jar
+  -cp target/classes:target/dependency/*
 )
 
 app_options=(
