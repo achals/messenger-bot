@@ -82,7 +82,7 @@ public class BotRestInterface
         response.recipient = messagePost.entry.get(0).messaging.get(0).sender.id;
         response.message = new MessageResponse.MessageData();
         response.message.text = messagePost.entry.get(0).messaging.get(0).message.text;
-        final Future<?> postResponse = webResource.post(response);
+        final Future<?> postResponse = webResource.type(MediaType.APPLICATION_JSON_TYPE).post(response);
         System.out.println(postResponse.isDone());
         try
         {
