@@ -81,6 +81,7 @@ public class BotRestInterface
     @Consumes(MediaType.APPLICATION_JSON)
     public Response webhook_post(final MessagePost messagePost)
     {
+
         final AsyncWebResource webResource = this.client.asyncResource(MESSAGE_POST_ENDPOINT_FORMAT + this.accessToken);
         final MessageResponse response = new MessageResponse();
         response.recipient = messagePost.entry.get(0).messaging.get(0).sender.id;
@@ -88,6 +89,9 @@ public class BotRestInterface
         response.message.text = messagePost.entry.get(0).messaging.get(0).message.text;
         try
         {
+            final String messagePostString = this.objectMapper.writeValueAsString(messagePost);
+            System.out.println(messagePostString);
+
             final String responseString = this.objectMapper.writeValueAsString(response);
             System.out.println(responseString);
             final Future<?> postResponse = webResource.type(MediaType.APPLICATION_JSON_TYPE)
