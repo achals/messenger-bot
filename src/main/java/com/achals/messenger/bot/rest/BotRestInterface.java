@@ -23,6 +23,7 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 @Path("/pin-bot/v1")
@@ -83,6 +84,14 @@ public class BotRestInterface
         response.message.text = messagePost.entry.get(0).messaging.get(0).message.text;
         final Future<?> postResponse = webResource.post(response);
         System.out.println(postResponse.isDone());
+        try
+        {
+            System.out.println(postResponse.get());
+        }
+        catch(final InterruptedException | ExecutionException e)
+        {
+            e.printStackTrace();
+        }
         return Response.ok().build();
     }
 
