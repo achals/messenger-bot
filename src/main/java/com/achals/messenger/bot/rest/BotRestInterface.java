@@ -35,11 +35,13 @@ public class BotRestInterface
     final String accessToken = "CAAORld2IHuMBACdylvThBuZCzKfZBKMmPaLakJGXmYN5LyufuRdH7YpsQhOpayMusk6kVYlCVKoOpZCpnvF2EZActnaMrlI0KkjGSwoUAikcd9dVYHf7yz2ZBKI6ZCOfZAWN8L19cjNj2hB2fVqZAlv7FUEoHZCcK5SaIWiEyNq7rG6CLez7PgfAKSPABdZA4oto8ZD";
 
     private final Client client;
+    private final ObjectMapper objectMapper;
 
     @Inject
-    public BotRestInterface(final Client client)
+    public BotRestInterface(final Client client, final ObjectMapper objectMapper)
     {
         this.client = client;
+        this.objectMapper = objectMapper;
     }
 
     @GET
@@ -82,13 +84,14 @@ public class BotRestInterface
         response.recipient = messagePost.entry.get(0).messaging.get(0).sender.id;
         response.message = new MessageResponse.MessageData();
         response.message.text = messagePost.entry.get(0).messaging.get(0).message.text;
-        final Future<?> postResponse = webResource.type(MediaType.APPLICATION_JSON_TYPE).post(response);
-        System.out.println(postResponse.isDone());
         try
         {
+            final Future<?> postResponse = webResource.type(MediaType.APPLICATION_JSON_TYPE)
+                    .post(this.objectMapper.writeValueAsString(response));
+            System.out.println(postResponse.isDone());
             System.out.println(postResponse.get());
         }
-        catch(final InterruptedException | ExecutionException e)
+        catch(final InterruptedException | ExecutionException | IOException e)
         {
             e.printStackTrace();
         }
