@@ -81,10 +81,10 @@ public class BotRestInterface
     @Consumes(MediaType.APPLICATION_JSON)
     public Response webhook_post(final MessagePost messagePost)
     {
-
         final AsyncWebResource webResource = this.client.asyncResource(MESSAGE_POST_ENDPOINT_FORMAT + this.accessToken);
         final MessageResponse response = new MessageResponse();
-        response.recipient = messagePost.entry.get(0).messaging.get(0).sender.id;
+        response.recipient = new MessageResponse.Recipient();
+        response.recipient.id = messagePost.entry.get(0).messaging.get(0).sender.id;
         response.message = new MessageResponse.MessageData();
         response.message.text = messagePost.entry.get(0).messaging.get(0).message.text;
         try

@@ -5,8 +5,13 @@ package com.achals.messenger.bot.model;
  */
 public class MessageResponse
 {
-    public long recipient;
+    public Recipient recipient;
     public MessageData message;
+
+    public static class Recipient
+    {
+        public long id;
+    }
 
     public static class MessageData
     {
