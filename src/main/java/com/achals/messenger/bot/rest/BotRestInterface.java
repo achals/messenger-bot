@@ -7,13 +7,12 @@ package com.achals.messenger.bot.rest;
 import com.achals.messenger.bot.model.MessagePost;
 import com.achals.messenger.bot.model.MessageResponse;
 import com.google.common.base.Splitter;
-import com.google.common.io.CharStreams;
 import com.sun.jersey.api.client.AsyncWebResource;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.filter.LoggingFilter;
-import org.aopalliance.intercept.Invocation;
-import org.apache.commons.lang.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -22,12 +21,12 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-@Path("/pin-bot/v1")
+@RestController
+@RequestMapping("/pin-bot/v1")
 public class BotRestInterface
 {
     private static final String MESSAGE_POST_ENDPOINT_FORMAT = "https://graph.facebook.com/v2.6/me/messages?access_token=";
@@ -47,7 +46,7 @@ public class BotRestInterface
     }
 
     @GET
-    @Path("health")
+    @RequestMapping("health")
     @Produces(MediaType.TEXT_PLAIN)
     public String health()
     {
@@ -56,7 +55,7 @@ public class BotRestInterface
 
 
     @GET
-    @Path("webhook")
+    @RequestMapping("webhook")
     @Produces(MediaType.TEXT_PLAIN)
     public String webhook_get(@Context HttpServletRequest request)
     {
