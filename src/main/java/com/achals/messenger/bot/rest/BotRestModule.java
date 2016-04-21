@@ -1,7 +1,9 @@
 package com.achals.messenger.bot.rest;
 
+import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.servlet.ServletModule;
+import com.sun.jersey.api.client.Client;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 
@@ -26,4 +28,10 @@ public class BotRestModule extends ServletModule
         bind(BotRestInterface.class).in(Singleton.class);
     }
 
+    @Provides
+    @Singleton
+    Client jerseyClient()
+    {
+        return new Client();
+    }
 }

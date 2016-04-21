@@ -5,8 +5,11 @@ package com.achals.messenger.bot.rest;
  */
 
 import com.achals.messenger.bot.model.MessagePost;
+import com.achals.messenger.bot.model.MessageResponse;
 import com.google.common.base.Splitter;
 import com.google.common.io.CharStreams;
+import com.sun.jersey.api.client.AsyncWebResource;
+import com.sun.jersey.api.client.Client;
 import org.aopalliance.intercept.Invocation;
 import org.apache.commons.lang.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -20,12 +23,23 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
+import java.util.concurrent.Future;
 
 @Path("/pin-bot/v1")
 public class BotRestInterface
 {
+    private static final String MESSAGE_POST_ENDPOINT_FORMAT = "https://graph.facebook.com/v2.6/me/messages?access_token=";
+
     final String validationToken = "bd4e2912-35e2-41fc-a15f-7df1fce6c131";
     final String accessToken = "CAAORld2IHuMBACdylvThBuZCzKfZBKMmPaLakJGXmYN5LyufuRdH7YpsQhOpayMusk6kVYlCVKoOpZCpnvF2EZActnaMrlI0KkjGSwoUAikcd9dVYHf7yz2ZBKI6ZCOfZAWN8L19cjNj2hB2fVqZAlv7FUEoHZCcK5SaIWiEyNq7rG6CLez7PgfAKSPABdZA4oto8ZD";
+
+    private final Client client;
+
+    @Inject
+    public BotRestInterface(final Client client)
+    {
+        this.client = client;
+    }
 
     @GET
     @Path("health")
@@ -62,7 +76,13 @@ public class BotRestInterface
     @Consumes(MediaType.APPLICATION_JSON)
     public Response webhook_post(final MessagePost messagePost)
     {
-        System.out.println(messagePost);
+        final AsyncWebResource webResource = this.client.asyncResource(MESSAGE_POST_ENDPOINT_FORMAT + this.accessToken);
+        final MessageResponse response = new MessageResponse();
+        response.recipient = messagePost.entry.get(0).messaging.get(0).sender.id;
+        response.message = new MessageResponse.MessageData();
+        response.message.text = messagePost.entry.get(0).messaging.get(0).message.text;
+        final Future<?> postResponse = webResource.post(response);
+        System.out.println(postResponse.isDone());
         return Response.ok().build();
     }
 
