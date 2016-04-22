@@ -57,9 +57,13 @@ public class BotRestInterface
                 response.recipient = new MessageResponse.Recipient();
                 response.recipient.id = messaging.sender.id;
                 response.message = new MessageResponse.MessageData();
-                response.message.text = messaging.message.text;
 
-                this.outbox.send(response);
+                // Only deal with messages, drop deliveries on the floor.
+                if (messaging.message != null && messaging.message.text != null )
+                {
+                    response.message.text = messaging.message.text;
+                    this.outbox.send(response);
+                }
             }
         }
     }
