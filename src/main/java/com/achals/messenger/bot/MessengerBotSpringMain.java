@@ -12,18 +12,6 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class MessengerBotSpringMain {
 
-    @Bean
-    public Client client()
-    {
-        return Client.create();
-    }
-
-    @Bean
-    public ObjectMapper objectMapper()
-    {
-        return new ObjectMapper();
-    }
-
     public static void main (final String[] args) throws Exception {
         SpringApplication.run(MessengerBotSpringMain.class, args);
     }
