@@ -1,7 +1,7 @@
 # messenger-bot
 A simple (dumb?) messenger-bot for the [messenger platform](https://messengerplatform.fb.com/) in Java.
 
-Uses spring-boot [spring-boot](http://projects.spring.io/spring-boot/) and [OkHttp](http://square.github.io/okhttp/), and absolutely no XML!
+Uses [spring-boot](http://projects.spring.io/spring-boot/) and [OkHttp](http://square.github.io/okhttp/), and absolutely no XML!
 
 ## Running locally
 Getting the server running locally is as simple as:
