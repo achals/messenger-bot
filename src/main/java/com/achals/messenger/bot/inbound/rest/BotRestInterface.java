@@ -7,8 +7,6 @@ package com.achals.messenger.bot.inbound.rest;
 import com.achals.messenger.bot.model.MessagePost;
 import com.achals.messenger.bot.model.MessageResponse;
 import com.google.common.base.Splitter;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -24,7 +22,7 @@ public class BotRestInterface
     final String validationToken = "bd4e2912-35e2-41fc-a15f-7df1fce6c131";
 
     @GET
-    @RequestMapping("health")
+    @Path("health")
     @Produces(MediaType.TEXT_PLAIN)
     public String health()
     {
@@ -33,7 +31,7 @@ public class BotRestInterface
 
 
     @GET
-    @RequestMapping("webhook")
+    @Path("webhook")
     @Produces(MediaType.TEXT_PLAIN)
     public String webhook_get(@Context HttpServletRequest request)
     {

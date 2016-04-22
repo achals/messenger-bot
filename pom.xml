@@ -40,16 +40,9 @@
         <tomcat.version>7.0.63</tomcat.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>maven.twttr.com</id>
-            <name>Twitter Maven Repo</name>
-            <url>http://maven.twttr.com</url>
-        </repository>
-    </repositories>
-
     <dependencies>
 
+        <!-- Spring Stuff -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jersey</artifactId>
@@ -79,73 +72,11 @@
             <version>1.2.16</version>
         </dependency>
 
-        <!-- Twitter Libraries -->
+        <!-- Guava -->
         <dependency>
-            <groupId>com.twitter.common</groupId>
-            <artifactId>application</artifactId>
-            <version>0.0.49</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.twitter.common</groupId>
-            <artifactId>application-module-http</artifactId>
-            <version>0.0.35</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.twitter.common</groupId>
-            <artifactId>application-module-log</artifactId>
-            <version>0.0.37</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.twitter.common</groupId>
-            <artifactId>application-module-stats</artifactId>
-            <version>0.0.31</version>
-        </dependency>
-
-        <!-- Guice -->
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>3.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-servlet</artifactId>
-            <version>3.0</version>
-        </dependency>
-
-        <!-- JAX-RS -->
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-core</artifactId>
-            <version>1.17</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-client</artifactId>
-            <version>1.17</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-server</artifactId>
-            <version>1.17</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-json</artifactId>
-            <version>1.17</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.sun.jersey.contribs</groupId>
-            <artifactId>jersey-guice</artifactId>
-            <version>1.17</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0</version>
         </dependency>
 
         <!-- Commons Codec -->
@@ -153,6 +84,13 @@
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.4</version>
+        </dependency>
+
+        <!-- Jersy Client -->
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>2.22.1</version>
         </dependency>
 
     </dependencies>

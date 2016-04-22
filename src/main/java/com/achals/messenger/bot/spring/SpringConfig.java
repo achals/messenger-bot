@@ -1,10 +1,14 @@
 package com.achals.messenger.bot.spring;
 
 import com.achals.messenger.bot.inbound.rest.BotRestInterface;
-import com.sun.jersey.api.client.Client;
-import org.codehaus.jackson.map.ObjectMapper;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.glassfish.jersey.client.JerseyClient;
+import org.glassfish.jersey.client.JerseyClientBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.ws.rs.client.Client;
 
 /**
  * Created by achal on 4/21/16.
@@ -15,7 +19,7 @@ public class SpringConfig {
     @Bean
     public Client client()
     {
-        return Client.create();
+        return new JerseyClientBuilder().build();
     }
 
     @Bean

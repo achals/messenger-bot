@@ -1,7 +1,5 @@
 package com.achals.messenger.bot;
 
-import com.sun.jersey.api.client.Client;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
