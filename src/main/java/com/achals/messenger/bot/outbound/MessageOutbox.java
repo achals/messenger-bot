@@ -2,6 +2,7 @@ package com.achals.messenger.bot.outbound;
 
 import com.achals.messenger.bot.model.MessageResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.glassfish.jersey.filter.LoggingFilter;
 
 import javax.inject.Inject;
 import javax.ws.rs.client.Client;
@@ -45,6 +46,7 @@ public class MessageOutbox {
                 try
                 {
                     final WebTarget webTarget = MessageOutbox.this.client.target(MESSAGE_POST_ENDPOINT_FORMAT + MessageOutbox.this.accessToken);
+                    webTarget.register(new LoggingFilter());
                     final String responseString = MessageOutbox.this.objectMapper.writeValueAsString(messageResponse);
                     System.out.println(responseString);
                     final Response postResponse = webTarget.request(MediaType.APPLICATION_JSON_TYPE).post(Entity.entity(responseString, MediaType.APPLICATION_JSON_TYPE));
