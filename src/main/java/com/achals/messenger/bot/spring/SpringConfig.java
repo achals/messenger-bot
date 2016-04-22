@@ -1,6 +1,6 @@
 package com.achals.messenger.bot.spring;
 
-import com.achals.messenger.bot.rest.BotRestInterface;
+import com.achals.messenger.bot.inbound.rest.BotRestInterface;
 import com.sun.jersey.api.client.Client;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +27,6 @@ public class SpringConfig {
     @Bean
     public BotRestInterface botRestInterface()
     {
-        return new BotRestInterface(this.client(), this.objectMapper());
+        return new BotRestInterface();
     }
 }

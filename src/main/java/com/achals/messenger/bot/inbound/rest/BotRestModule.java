@@ -1,4 +1,4 @@
-package com.achals.messenger.bot.rest;
+package com.achals.messenger.bot.inbound.rest;
 
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
