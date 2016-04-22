@@ -34,7 +34,7 @@ public class MessageOutbox {
     }
 
     public void send(final MessageResponse messageResponse) {
-        this.executorService.submit(this.newPostRunnable(messageResponse));
+        this.newPostRunnable(messageResponse).run();
     }
 
     private Runnable newPostRunnable(final MessageResponse messageResponse) {
