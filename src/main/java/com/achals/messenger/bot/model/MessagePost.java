@@ -26,7 +26,7 @@ public class MessagePost
         public Recipient recipient;
         public long timestamp;
         public Message message;
-
+        public Delivery delivery;
     }
 
     public static class Sender
@@ -44,5 +44,12 @@ public class MessagePost
         public String mid;
         public long seq;
         public String text;
+    }
+
+        public static class Delivery
+    {
+        public List<String> mids;
+        public long watermark;
+        public long seq;
     }
 }
