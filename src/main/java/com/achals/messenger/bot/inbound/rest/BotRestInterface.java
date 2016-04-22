@@ -49,13 +49,19 @@ public class BotRestInterface
     @RequestMapping(value = "webhook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON,produces = MediaType.APPLICATION_JSON)
     public void webhook_post(@RequestBody final MessagePost messagePost)
     {
-        final MessageResponse response = new MessageResponse();
-        response.recipient = new MessageResponse.Recipient();
-        response.recipient.id = messagePost.entry.get(0).messaging.get(0).sender.id;
-        response.message = new MessageResponse.MessageData();
-        response.message.text = messagePost.entry.get(0).messaging.get(0).message.text;
+        for (final MessagePost.Entry message : messagePost.entry)
+        {
+            for (final MessagePost.Messaging messaging : message.messaging)
+            {
+                final MessageResponse response = new MessageResponse();
+                response.recipient = new MessageResponse.Recipient();
+                response.recipient.id = messaging.sender.id;
+                response.message = new MessageResponse.MessageData();
+                response.message.text = messaging.message.text;
 
-        this.outbox.send(response);
+                this.outbox.send(response);
+            }
+        }
     }
 
 }

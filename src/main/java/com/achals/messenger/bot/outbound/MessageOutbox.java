@@ -34,7 +34,7 @@ public class MessageOutbox {
     }
 
     public void send(final MessageResponse messageResponse) {
-        this.newPostRunnable(messageResponse).run();
+        this.executorService.submit(this.newPostRunnable(messageResponse));
     }
 
     private Runnable newPostRunnable(final MessageResponse messageResponse) {
@@ -48,10 +48,7 @@ public class MessageOutbox {
                     final WebTarget webTarget = MessageOutbox.this.client.target(MESSAGE_POST_ENDPOINT_FORMAT + MessageOutbox.this.accessToken);
                     webTarget.register(new LoggingFilter());
                     final String responseString = MessageOutbox.this.objectMapper.writeValueAsString(messageResponse);
-                    System.out.println(responseString);
-                    System.out.println(webTarget.toString());
                     final Response postResponse = webTarget.request(MediaType.APPLICATION_JSON_TYPE).post(Entity.entity(responseString, MediaType.APPLICATION_JSON_TYPE));
-                    System.out.println(postResponse.getStatus());
                 } catch (final IOException e)
                 {
                     e.printStackTrace();
