@@ -7,10 +7,7 @@ package com.achals.messenger.bot.inbound.rest;
 import com.achals.messenger.bot.model.MessagePost;
 import com.achals.messenger.bot.model.MessageResponse;
 import com.achals.messenger.bot.outbound.MessageOutbox;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -50,7 +47,7 @@ public class BotRestInterface
     }
 
     @RequestMapping(value = "webhook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON,produces = MediaType.APPLICATION_JSON)
-    public void webhook_post(final MessagePost messagePost)
+    public void webhook_post(@RequestBody final MessagePost messagePost)
     {
         final MessageResponse response = new MessageResponse();
         response.recipient = new MessageResponse.Recipient();
