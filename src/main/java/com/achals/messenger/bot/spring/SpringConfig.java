@@ -39,7 +39,7 @@ public class SpringConfig
     @Bean
     public BotRestInterface botRestInterface()
     {
-        return new BotRestInterface(this.validationToken());
+        return new BotRestInterface(this.validationToken(), this.messageOutbox());
     }
 
     @Bean
