@@ -2,7 +2,6 @@ package com.achals.messenger.bot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 /**
  * Created by achal on 4/21/16.
