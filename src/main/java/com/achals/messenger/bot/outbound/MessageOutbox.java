@@ -49,8 +49,9 @@ public class MessageOutbox {
                     webTarget.register(new LoggingFilter());
                     final String responseString = MessageOutbox.this.objectMapper.writeValueAsString(messageResponse);
                     System.out.println(responseString);
+                    System.out.println(webTarget.toString());
                     final Response postResponse = webTarget.request(MediaType.APPLICATION_JSON_TYPE).post(Entity.entity(responseString, MediaType.APPLICATION_JSON_TYPE));
-                    System.out.println(postResponse.toString());
+                    System.out.println(postResponse.getStatus());
                 } catch (final IOException e)
                 {
                     e.printStackTrace();
