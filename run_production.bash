@@ -12,6 +12,4 @@ jvm_options=(
   -cp ${jar}
 )
 
-
-find .
-java "${jvm_options[@]}" "$main" "${app_options[@]}"
+java "${jvm_options[@]}" "$main"
