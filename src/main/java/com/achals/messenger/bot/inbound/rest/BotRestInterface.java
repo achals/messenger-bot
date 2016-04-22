@@ -8,6 +8,7 @@ import com.achals.messenger.bot.model.MessagePost;
 import com.achals.messenger.bot.model.MessageResponse;
 import com.google.common.base.Splitter;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -19,7 +20,13 @@ import java.util.Map;
 @Path("/pin-bot/v1")
 public class BotRestInterface
 {
-    final String validationToken = "bd4e2912-35e2-41fc-a15f-7df1fce6c131";
+    private final String validationToken;
+
+    @Inject
+    public BotRestInterface(final String validationToken)
+    {
+        this.validationToken = validationToken;
+    }
 
     @GET
     @Path("health")

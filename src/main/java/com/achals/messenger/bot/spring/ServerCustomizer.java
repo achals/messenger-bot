@@ -12,18 +12,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServerCustomizer implements EmbeddedServletContainerCustomizer
 {
-    public static final String PORT = "PORT";
-
     @Autowired
-    SystemEnvironmentPropertySource environmentPropertySource;
+    SpringConfig springConfig;
 
     @Override
     public void customize(final ConfigurableEmbeddedServletContainer container) {
-        if (this.environmentPropertySource.containsProperty(PORT))
-        {
-            final Integer port = Integer.parseInt(this.environmentPropertySource.getProperty(PORT).toString());
-            container.setPort(port);
-        }
+        container.setPort(this.springConfig.port());
     }
 
 }

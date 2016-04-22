@@ -19,17 +19,17 @@ public class MessageOutbox {
 
     private static final String MESSAGE_POST_ENDPOINT_FORMAT = "https://graph.facebook.com/v2.6/me/messages?access_token=";
 
-    final String accessToken = "CAAORld2IHuMBAJksmRRRiYJwXtOvzqLn9VZAnTuYqjVzoq7iGNtdWARchwNa7r2jc2l0omZANN90k0ehZATNpEqmxLIvhuX9ns4L0BCSGz5bBae3wHZBZBS7WlkwpI35tOAxQODn5eY00sB25GYOdsXJoN53HAphhajoZBs9MHzZAboGD7ACtvhSdQC8tKHZCJgZD";
-
     private final Client client;
     private final ObjectMapper objectMapper;
     private final ExecutorService executorService;
+    private final String accessToken;
 
     @Inject
-    public MessageOutbox (final Client client, final ObjectMapper objectMapper) {
+    public MessageOutbox (final Client client, final ObjectMapper objectMapper, final String accessToken) {
         this.client = client;
         this.objectMapper = objectMapper;
         this.executorService = Executors.newFixedThreadPool(6);
+        this.accessToken = accessToken;
     }
 
     public void send(final MessageResponse messageResponse) {
